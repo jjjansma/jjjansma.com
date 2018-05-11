@@ -12,7 +12,7 @@
     "express": "*"
   },
   "scripts": {
-  "start": "node index.js"
+  "start": "node app.js"
   },
   "author": "Jason Jansma",
   "license": "ISC"

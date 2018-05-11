@@ -71,6 +71,7 @@
               <a id="ukiyo-e-no" class="dropdown-item" href="#">No Ukiyo-e</a>
               <a id="ukiyo-e-wave" class="dropdown-item" href="#">The Great Wave off Kanagawa</a>
               <a id="ukiyo-e-otani" class="dropdown-item" href="#">Ōtani Oniji III in the Role of the Servant Edobei</a>
+              <a id="ukiyo-e-crows" class="dropdown-item" href="#">Crows and the Moon</a>
             </div>
           </div>
         </div>
@@ -125,9 +126,22 @@
       $(".dropdown-item").css({"color": "black"});
       $(".link").css({"color": "AliceBlue"});
       $("#art-link").attr('href', 'images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg');
-      $("#art-title").text("Ōtani Oniji III in the Role of the Servant Edobei,");
+      $("#art-title").text("Ōtani Oniji III in the Role of the Servant Edobei");
       $("#art-artist").text("Tōshūsai Sharaku");
       $("#art-year").text("1794");
+    });
+    $("#ukiyo-e-crows").click(function() {
+      $("body").css({"background-image": "url('images/Ogata_Crows_and_the_Moon.jpg')"})
+      .css({"background-color": "rgba(61, 30, 91, 0.7)"})
+      .css({"background-size": "110%"})
+      .css({"color": "AliceBlue"})
+      .css({"opacity": "0.9"});
+      $(".dropdown-item").css({"color": "black"});
+      $(".link").css({"color": "AliceBlue"});
+      $("#art-link").attr('href', 'images/Ogata_Crows_and_the_Moon.jpg');
+      $("#art-title").text("Crows and the Moon");
+      $("#art-artist").text("Ogata Kōrin");
+      $("#art-year").text("This print was made probably in Meiji period (1868 - 1912)");
     });
     $("#ukiyo-e-no").click(function() {
       $("body").css({"background-image": "initial"})

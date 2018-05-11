@@ -1,0 +1,19 @@
+{
+  "name": "jjjansma.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.6.1",
+    "express": "*"
+  },
+  "scripts": {
+  "start": "node index.js"
+  },
+  "author": "Jason Jansma",
+  "license": "ISC"
+}

@@ -15,19 +15,32 @@
       body {
         font-family: 'IBM Plex Mono', sans-serif;
         background-color: rgba(3, 50, 78, 0.7);
-        background-repeat: no-repeat;
+        /* background-size: cover; */
+        /* background-repeat: repeat; */
+        background-attachment: fixed;
+        background-position: center;
         background-blend-mode: darken;
       }
       a, a:hover, li>a {
-        color: initial
+        color: initial;
       }
       .nav-pills .nav-link.active {
-        background-color: initial
+        background-color: initial;
+        color: AliceBlue;
       }
       .nav-pills .show>.nav-link {
         color: initial;
         background-color: initial;
-        border: none
+        border: none;
+      }
+      .resume-link {
+        color: AliceBlue;
+      }
+      .figure {
+        height: 60px;
+      }
+      .figure-caption {
+        color: initial;
       }
     </style>
   </head>
@@ -35,8 +48,16 @@
 <html lang="en">
   <body>
     <div class="container">
-      <div class="row mt-4 pt-4"></div>
-      <div class="row my-4 py-4">
+      <div class="row justify-content-end mt-4">
+        <figure class="figure">
+          <a id="art-link" href="" target="_blank">
+            <figcaption id="art-title" class="figure-caption"></figcaption>
+            <figcaption id="art-artist" class="figure-caption"></figcaption>
+            <figcaption id="art-year" class="figure-caption"></figcaption>
+          </a>
+        </figure>
+      </div>
+      <div class="row my-4">
 
         <div class="nav flex-column nav-pills col-3 pt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
@@ -44,11 +65,12 @@
           <a class="nav-link" id="v-pills-resume-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Resume</a>
 
           <div class="dropdown show">
-            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hokusai Wave</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ukiyo-e</a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a id="bg-default" class="dropdown-item" href="#">Off</a>
-              <a id="bg-hokusai" class="dropdown-item" href="#">On</a>
+              <a id="ukiyo-e-no" class="dropdown-item" href="#">No Ukiyo-e</a>
+              <a id="ukiyo-e-wave" class="dropdown-item" href="#">The Great Wave off Kanagawa</a>
+              <a id="ukiyo-e-otani" class="dropdown-item" href="#">Ōtani Oniji III in the Role of the Servant Edobei</a>
             </div>
           </div>
         </div>
@@ -81,19 +103,42 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
   <script>
-    $("#bg-hokusai").click(function() {
-      $("body").css({"background-image": "url('Tsunami_by_hokusai_19th_century.jpg')"})
+    $("#ukiyo-e-wave").click(function() {
+      $("body").css({"background-image": "url('images/Great_Wave_off_Kanagawa2.jpg')"})
+      .css({"background-color": "rgba(3, 50, 78, 0.7)"})
+      .css({"background-size": "cover"})
       .css({"color": "AliceBlue"})
       .css({"opacity": "0.9"});
       $(".dropdown-item").css({"color": "black"});
       $(".link").css({"color": "AliceBlue"});
+      $("#art-link").attr('href', 'images/Great_Wave_off_Kanagawa2.jpg');
+      $("#art-title").text("The Great Wave off Kanagawa");
+      $("#art-artist").text("Katsushika Hokusai");
+      $("#art-year").text("Sometime between 1829 and 1833");
     });
-    $("#bg-default").click(function() {
-      $("body").css({"background-image": "none"})
+    $("#ukiyo-e-otani").click(function() {
+      $("body").css({"background-image": "url('images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg')"})
+      .css({"background-color": "rgba(3, 50, 7, 0.7)"})
+      .css({"background-size": "contain"})
+      .css({"color": "AliceBlue"})
+      .css({"opacity": "0.9"});
+      $(".dropdown-item").css({"color": "black"});
+      $(".link").css({"color": "AliceBlue"});
+      $("#art-link").attr('href', 'images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg');
+      $("#art-title").text("Ōtani Oniji III in the Role of the Servant Edobei,");
+      $("#art-artist").text("Tōshūsai Sharaku");
+      $("#art-year").text("1794");
+    });
+    $("#ukiyo-e-no").click(function() {
+      $("body").css({"background-image": "initial"})
+      .css({"background-color": "rgba(3, 50, 78, 0.7)"})
       .css({"color": "initial"})
       .css({"opacity": "initial"});
       $(".dropdown-item").css({"color": "initial"});
       $(".link").css({"color": "initial"});
+      $("#art-title").text("");
+      $("#art-artist").text("");
+      $("#art-year").text("");
     });
   </script>
 </html>

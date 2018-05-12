@@ -21,6 +21,12 @@ app.get('/', function(req, res){
   });
 });
 
+app.get('/try', function(req, res){
+  res.render("try", {
+    title: "jjjansma.com"
+  });
+});
+
 // app.listen(3000, function(){
 //   console.log("Server started on Port 3000.");
 // });

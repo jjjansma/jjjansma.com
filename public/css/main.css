@@ -1,0 +1,79 @@
+body {
+  font-family: 'Inconsolata', sans-serif;
+  background-color: rgba(93, 138, 168, 1); /* Air Force Blue  */
+  z-index: 1000;
+}
+
+a, a:hover, li>a {
+  color: initial;
+}
+
+
+body, a {
+  -webkit-transition: color 0.5s ease;
+  -moz-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  -ms-transition: color 0.5s ease;
+  transition: color 0.5s ease;
+}
+
+.nav-pills .nav-link.active {
+  background-color: initial;
+  color: initial;
+  display: list-item;
+  list-style-type: disc;
+}
+
+.nav-pills .show>.nav-link {
+  color: initial;
+  background-color: initial;
+  border: none;
+}
+
+#section-ukiyo-header {
+  height: 60px;
+}
+.resume-link {
+  text-decoration: underline;
+}
+.figure-caption {
+  color: initial;
+  font-weight: bold;
+}
+.close {
+  color: AliceBlue;
+}
+
+.overlay{
+  opacity: 0.9;
+  background-blend-mode: darken;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+/* .close {
+  z-index: 1001;
+} */
+
+/* Ukiyo-e */
+.wave {
+  background-image: url('/images/1200px-Tsunami_by_hokusai_19th_century.jpg');
+  background-color: rgba(49, 140, 231, 1); /* Bleu De France */
+  background-size: 100%;
+}
+
+.otani {
+  background-image: url('/images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg');
+  background-color: rgba(49, 140, 231, 1); /* British Racing Green */
+  background-size: contain;
+}
+
+.crows {
+  background-image: url('/images/Ogata_Crows_and_the_Moon.jpg');
+  background-color: rgba(93, 57, 84, 0.7); /* Dark Byzantium */
+  background-size: 110%;
+  background-position: center;
+}

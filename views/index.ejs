@@ -9,61 +9,40 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
 
     <title>jjjansma</title>
-    <style>
-      body {
-        font-family: 'Inconsolata', sans-serif;
-        /* background-color: rgba(3, 50, 78, 0.7); */
-        background-color: rgba(93, 138, 168, 1); /* Air Force Blue  */
-        /* background-size: cover; */
-        /* background-repeat: repeat; */
-        background-attachment: fixed;
-        background-position: center;
-        background-blend-mode: darken;
-      }
-      a, a:hover, li>a {
-        color: initial;
-      }
-      .nav-pills .nav-link.active {
-        background-color: initial;
-        color: initial;
-        /* text-decoration: underline; */
-        display: list-item;
-        list-style-type: disc;
-        /* list-style-position: outside; */
-      }
-      .nav-pills .show>.nav-link {
-        color: initial;
-        background-color: initial;
-        border: none;
-      }
-      .resume-link {
-        text-decoration: underline;
-      }
-      .figure {
-        height: 60px;
-      }
-      .figure-caption {
-        color: initial;
-        font-weight: bold;
-      }
-      .close {
-        color: AliceBlue;
-      }
-    </style>
   </head>
 
 <html lang="en">
   <body>
     <div class="container">
-      <div class="row justify-content-between mt-4">
+
+        <div class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <!-- <img class="d-block w-100"> -->
+            </div>
+            <div class="carousel-item overlay wave">
+              <!-- <img class="d-block w-100"> -->
+            </div>
+            <div class="carousel-item overlay otani">
+              <!-- <img class="d-block w-100"> -->
+            </div>
+            <div class="carousel-item overlay crows">
+              <!-- <img class="d-block w-100"> -->
+            </div>
+          </div>
+        </div>
+
+
+      <div id="section-ukiyo-header" class="row justify-content-between mt-4">
         <div class="col-2 d-flex justify-content-start">
-          <button id="ukiyo-e-no" type="button" class="close" aria-label="Close" data-toggle="tooltip"  data-placement="right" title="Close Ukiyo-e Background" hidden>
-            <p class="display-4" aria-hidden="true">&times;</p>
+          <button type="button" class="close" aria-label="Close" data-toggle="tooltip"  data-placement="right" title="Close Ukiyo-e Background" hidden>
+            <span class="display-4" aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="col-4">
+        <div class="col-4"
           <figure class="figure">
             <a id="art-link" href="" target="_blank">
               <figcaption id="art-title" class="figure-caption"></figcaption>
@@ -73,24 +52,17 @@
           </figure>
         </div>
       </div>
-      <div class="row my-4">
+
+
+      <div class="row mt-4">
 
         <div class="col-3 nav flex-column nav-pills pt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
           <a class="nav-link" id="v-pills-projects-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Projects</a>
           <a class="nav-link" id="v-pills-resume-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Resume</a>
-
-          <div class="dropdown show">
-            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ukiyo-e</a>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <!-- <a id="ukiyo-e-no" class="dropdown-item" href="#">No Ukiyo-e</a> -->
-              <a id="ukiyo-e-wave" class="dropdown-item" href="#">The Great Wave off Kanagawa</a>
-              <a id="ukiyo-e-otani" class="dropdown-item" href="#">Ōtani Oniji III in the Role of the Servant Edobei</a>
-              <a id="ukiyo-e-crows" class="dropdown-item" href="#">Crows and the Moon</a>
-            </div>
-          </div>
+          <a class="nav-link" id="ukiyo-e-mode" data-toggle="" href="#" role="tab" aria-controls="v-pills-ukiyo" aria-selected="false">Ukiyo-e</a>
         </div>
+
         <div class="col-9 tab-content pl-4" id="v-pills-tabContent">
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <h1 class="">Profile</h1>
@@ -99,7 +71,7 @@
             </div>
           </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <h1 class="xxx">Projects</h1>
+            <h1 class="">Projects</h1>
             <div class="my-4">
               <% include includes/projects %>
             </div>
@@ -115,63 +87,13 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
   </body>
-  <script>
-
-    function setUkiyo() {
-      $(".close").prop("hidden", false);
-      $(".link").css({"color": "AliceBlue"});
-      $(".dropdown-item").css({"color": "black"});
-      $("a.nav-link").css({"color": "AliceBlue"});
-      $("body").css({"color": "AliceBlue"}).css({"opacity": "0.9"});
-    };
-
-    $("#ukiyo-e-wave").click(function() {
-      $("body").css({"background-image": "url('images/Great_Wave_off_Kanagawa2.jpg')"})
-      .css({"background-color": "rgba(49, 140, 231, 1)"}) // Bleu De France
-      .css({"background-size": "100%"});
-      $("#art-link").attr('href', 'images/Great_Wave_off_Kanagawa2.jpg');
-      $("#art-title").text("The Great Wave off Kanagawa");
-      $("#art-artist").text("Katsushika Hokusai");
-      $("#art-year").text("Sometime between 1829 and 1833");
-      setUkiyo();
-    });
-    $("#ukiyo-e-otani").click(function() {
-      $("body").css({"background-image": "url('images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg')"})
-      .css({"background-color": "rgba(0, 66, 37, 0.7)"}) // British Racing Green
-      .css({"background-size": "contain"});
-      $("#art-link").attr('href', 'images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg');
-      $("#art-title").text("Ōtani Oniji III in the Role of the Servant Edobei");
-      $("#art-artist").text("Tōshūsai Sharaku");
-      $("#art-year").text("1794");
-      setUkiyo();
-    });
-    $("#ukiyo-e-crows").click(function() {
-      $("body").css({"background-image": "url('images/Ogata_Crows_and_the_Moon.jpg')"})
-      // .css({"background-color": "rgba(61, 30, 91, 0.7)"})
-      .css({"background-color": "rgba(93, 57, 84, 0.7)"}) // Dark Byzantium
-      .css({"background-size": "110%"});
-      $("#art-link").attr('href', 'images/Ogata_Crows_and_the_Moon.jpg');
-      $("#art-title").text("Crows and the Moon");
-      $("#art-artist").text("Ogata Kōrin");
-      $("#art-year").text("This print was made probably in Meiji period (1868 - 1912)");
-      setUkiyo();
-    });
-    $("#ukiyo-e-no").click(function() {
-      $(".close").prop("hidden", true);
-      $("body").css({"background-image": "initial"})
-      .css({"background-color": "rgba(93, 138, 168, 1)"})
-      .css({"color": "initial"})
-      .css({"opacity": "initial"});
-      $(".dropdown-item").css({"color": "initial"});
-      $("a.nav-link").css({"color": "initial"})
-      $(".link").css({"color": "initial"});
-      $("#art-title").text("");
-      $("#art-artist").text("");
-      $("#art-year").text("");
-    });
-  </script>
 </html>

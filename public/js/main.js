@@ -1,68 +1,111 @@
+var ukiyo;
+var slides = [];
+var currentSlide = 0;
+var currentcolorSlideObject = 0;
+var imageSlideObject;
+var colorSlideObject;
 
-var currentUkiyoImage = 1;
+var carouselItemElement = '<div class="carousel-item overlay"></div>';
 
-var ukiyoImages = [
-  {
-    artLink: "images/Great_Wave_off_Kanagawa2.jpg",
-    artTitle: "The Great Wave off Kanagawa",
-    artArtist: "Katsushika Hokusai",
-    artYear: "Sometime between 1829 and 1833"
-  },
-  {
-    artLink: "images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg",
-    artTitle: "Ōtani Oniji III in the Role of the Servant Edobei",
-    artArtist: "Tōshūsai Sharaku",
-    artYear: "1794"
-  },
-  {
-    artLink: "images/Ogata_Crows_and_the_Moon.jpg",
-    artTitle: "Crows and the Moon",
-    artArtist: "Ogata Kōrin",
-    artYear: "Meiji period (1868 - 1912)"
-  }
-];
+$.getJSON("js/ukiyo.json", function(jsonData) {
+  ukiyo = jsonData;
+  // slides = Object.keys(ukiyo).length;
+  var i = 0;
+  $.each(ukiyo, function (key, object) {
+    slides[i] = object;
+    i++;
+  });
+});
 
-function setUkiyo() {
+function setSlideMode() {
   $(".close").prop("hidden", false);
   $(".link").css({"color": "AliceBlue"});
   $("a.nav-link").css({"color": "AliceBlue"});
   $("body").css({"color": "AliceBlue"}).css({"opacity": "0.9"});
-
-  var ukiyoImage = ukiyoImages[currentUkiyoImage - 1];
-
-  $("#art-link").attr('href', ukiyoImage.artLink);
-  $("#art-title").text(ukiyoImage.artTitle);
-  $("#art-artist").text(ukiyoImage.artArtist);
-  $("#art-year").text(ukiyoImage.artYear);
-
+  //
+  // var download = $("#carousel-image .carousel-item.active download").text();
+  // var title = $("#carousel-image .carousel-item.active title").text();
+  // var artist = $("#carousel-image .carousel-item.active artist").text();
+  // var year = $("#carousel-image .carousel-item.active year").text();
+  //
+  // $("#art-title").text(title);
+  // $("#art-artist").text(artist);
+  // $("#art-year").text(year);
+  // $("#art-download").attr('href', download);
 }
 
-function unsetUkiyo() {
+function resetSlides() {
+  $(".overlay").remove();
+  $("#carousel-color .initial").addClass("active");
+  $("#carousel-image .initial").addClass("active");
+  currentSlide = 0;
+}
+
+
+function closeSlides() {
   $(".close").prop("hidden", true);
-  $("body").css({"color": "initial"}).css({"opacity": "initial"});
+  $("body").css({"color": "initial"})
+  .css({"background-image": "none"})
+  .css({"background-color": "rgba(93, 138, 168, 1)"});
   $("a.nav-link").css({"color": "initial"});
   $(".link").css({"color": "initial"});
-  $("#art-title").text("");
-  $("#art-artist").text("");
-  $("#art-year").text("");
+  // $('#carousel-color').carousel('dispose');
+  // $("#art-title").text("");
+  // $("#art-artist").text("");
+  // $("#art-year").text("");
 }
 
+$("#carousel-image").on("slid.bs.carousel", function (event) {
+  $("#carousel-image").carousel("pause");
+  $(".overlay").css({"background-image": "none"}).css({"background-color": "initial"});
+  // $(".overlay").css({"opacity": "0"});
+  // $("body").css({"background-image": "url('images/airforceblue.png')"});
+  $("body").css({"background-color": slides[currentSlide-1].rgba})
+  // .fadeTo('slow', 1)
+  .css({"background-image": slides[currentSlide-1].urlLink})
+  .css({"background-size": slides[currentSlide-1].backgroundSize})
+  .css({"background-position": slides[currentSlide-1].backgroundPosition});
+  setSlideMode();
+
+});
+//
+//
+$("#carousel-color").on("slid.bs.carousel", function (event) {
+  debugger;
+  $("#carousel-image").carousel(currentSlide);
+  $("#carousel-color").carousel("pause");
+});
+
 window.onload = function() {
-  $('.carousel').carousel('pause');
+  $("#carousel-color").carousel("pause");
+  $("#carousel-image").carousel("pause");
 
-  $("#ukiyo-e-mode").click(function() {
+  $("#blend").click(function() {
 
-    if (currentUkiyoImage > ukiyoImages.length) {
-      currentUkiyoImage = 1;
+    if (currentSlide == slides.length) {
+      resetSlides();
     }
-    setUkiyo();
-    $('.carousel').carousel(currentUkiyoImage);
-    currentUkiyoImage += 1;
+
+    if (currentSlide < slides.length) {
+      colorSlideObject = $("#carousel-color .carousel-inner").prepend(carouselItemElement).children().first();
+      colorSlideObject.css({"background-color": slides[currentSlide].rgba});
+      imageSlideObject = $("#carousel-image .carousel-inner").append(carouselItemElement).children().last();
+      imageSlideObject.css({"background-image": slides[currentSlide].urlLink});
+    }
+
+    debugger;
+    ++currentSlide;
+    $('#carousel-color').carousel("prev");
+
+
+
   });
 
   $(".close").click(function() {
-    unsetUkiyo();
-    $('.carousel').carousel(0);
+    resetSlides();
+    closeSlides();
+    $("#carousel-color").carousel(0);
+    // $('#carousel-image').carousel(0);
   });
 };
 

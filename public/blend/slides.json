@@ -1,0 +1,47 @@
+{
+  "wave": {
+    "title": "The Great Wave off Kanagawa",
+    "artist": "Katsushika Hokusai",
+    "year": "Sometime between 1829 and 1833",
+    "urlLink": "images/1200px-Tsunami_by_hokusai_19th_century.jpg",
+    "backgroundSize": "cover",
+    "backgroundPosition": "center",
+    "downloadLink": "images/Great_Wave_off_Kanagawa2.jpg",
+    "rgba": "rgba(49, 140, 231, 1)",
+    "rgbaName": "Bleu De France",
+    "a": "images/1200px-Tsunami_by_hokusai_19th_century.jpg"
+  },
+  "otani": {
+    "title": "Ōtani Oniji III in the Role of the Servant Edobei",
+    "artist": "Tōshūsai Sharaku",
+    "year": "1794",
+    "urlLink": "images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg",
+    "backgroundSize": "contain",
+    "backgroundPosition": "center",
+    "downloadLink": "images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg",
+    "rgba": "rgba(0, 66, 37, 0.7)",
+    "rgbaName": "British Racing Green"
+  },
+  "crows": {
+    "title": "Crows and the Moon",
+    "artist": "Ogata Kōrin",
+    "year": "Meiji period (1868 - 1912)",
+    "urlLink": "images/Ogata_Crows_and_the_Moon.jpg",
+    "backgroundSize": "110%",
+    "backgroundPosition": "center",
+    "downloadLink": "images/Ogata_Crows_and_the_Moon.jpg",
+    "rgba": "rgba(93, 57, 84, 0.7)",
+    "rgbaName": "Dark Byzantium"
+  },
+  "couple": {
+    "title": "Couple in a Snowstorm",
+    "artist": "Suzuki Harunobu",
+    "year": "1768",
+    "urlLink": "images/Couple_in_a_Snowstorm,_Suzuki_Harunobu,_c._1768_-_Hood_Museum_of_Art_-_DSC09257.JPG",
+    "backgroundSize": "110%",
+    "backgroundPosition": "center",
+    "downloadLink": "images/Couple_in_a_Snowstorm,_Suzuki_Harunobu,_c._1768_-_Hood_Museum_of_Art_-_DSC09257.JPG",
+    "rgba": "rgba(112, 66, 20, 0.5)",
+    "rgbaName": "Sepia"
+  }
+}

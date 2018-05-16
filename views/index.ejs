@@ -18,41 +18,9 @@
   <body>
     <div class="container">
 
-        <div class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <!-- <img class="d-block w-100"> -->
-            </div>
-            <div class="carousel-item overlay wave">
-              <!-- <img class="d-block w-100"> -->
-            </div>
-            <div class="carousel-item overlay otani">
-              <!-- <img class="d-block w-100"> -->
-            </div>
-            <div class="carousel-item overlay crows">
-              <!-- <img class="d-block w-100"> -->
-            </div>
-          </div>
-        </div>
-
-
-      <div id="section-ukiyo-header" class="row justify-content-between mt-4">
-        <div class="col-2 d-flex justify-content-start">
-          <button type="button" class="close" aria-label="Close" data-toggle="tooltip"  data-placement="right" title="Close Ukiyo-e Background" hidden>
-            <span class="display-4" aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="col-4"
-          <figure class="figure">
-            <a id="art-link" href="" target="_blank">
-              <figcaption id="art-title" class="figure-caption"></figcaption>
-              <figcaption id="art-artist" class="figure-caption"></figcaption>
-              <figcaption id="art-year" class="figure-caption"></figcaption>
-            </a>
-          </figure>
-        </div>
-      </div>
-
+      <!-- blend -->
+      <% include includes/blend %>
+      <!-- END blend -->
 
       <div class="row mt-4">
 
@@ -60,7 +28,7 @@
           <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
           <a class="nav-link" id="v-pills-projects-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Projects</a>
           <a class="nav-link" id="v-pills-resume-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Resume</a>
-          <a class="nav-link" id="ukiyo-e-mode" data-toggle="" href="#" role="tab" aria-controls="v-pills-ukiyo" aria-selected="false">Ukiyo-e</a>
+          <a class="nav-link" id="blend" data-toggle="" href="#" role="tab" aria-controls="v-pills-ukiyo" aria-selected="false">Blend</a>
         </div>
 
         <div class="col-9 tab-content pl-4" id="v-pills-tabContent">
@@ -87,13 +55,13 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+    <script src="blend/blend.js"></script>
   </body>
 </html>

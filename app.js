@@ -16,20 +16,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-  res.render("index", {
-    title: "jjjansma.com"
-  });
+  res.render("index");
 });
 
-app.get('/try', function(req, res){
-  res.render("try", {
-    title: "jjjansma.com"
-  });
+app.use(function (err, req, res, next) {
+  console.log("aasa");
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
-
-// app.listen(3000, function(){
-//   console.log("Server started on Port 3000.");
-// });
 
 const server = app.listen(8080, () => {
   const host = server.address().address;

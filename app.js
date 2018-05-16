@@ -1,8 +1,8 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-var app = express();
+const app = express();
 
 // View Engine
 app.set("view engine", "ejs");
@@ -16,11 +16,22 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-  res.render("index");
+  res.render("index", {
+    title: "jjjansma"
+  });
+});
+
+app.use(function(req, res, next) { // i catch 404s
+  console.log("404");
+  //res.status(404).send('Something broke 404!');
+  //res.render('not_found');
+  res.status(404).render("404", {
+    title: "404 Not Found"
+  });
 });
 
 app.use(function (err, req, res, next) {
-  console.log("aasa");
+  console.log("ERROR");
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
@@ -29,5 +40,5 @@ const server = app.listen(8080, () => {
   const host = server.address().address;
   const port = server.address().port;
 
-  console.log(`Example app listening at http://${host}:${port}`);
+  console.log(`jjjansma.com listening at http://${host}:${port}`);
 });

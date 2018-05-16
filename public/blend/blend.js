@@ -1,13 +1,13 @@
-var slidesJson = "blend/slides.json";
-var slides = [];
-var currentSlide = 0;
-var imageSlideObject;
-var colorSlideObject;
+const slidesJson = "blend/slides.json";
+let slides = [];
+let currentSlide = 0;
+let imageSlideObject;
+let colorSlideObject;
 
-var carouselItemElement = '<div class="carousel-item overlay" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0;"></div>';
+const carouselItemElement = '<div class="carousel-item overlay" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0;"></div>';
 
 $.getJSON(slidesJson, function(jsonData) {
-  var i = 0;
+  let i = 0;
   $.each(jsonData, function (key, object) {
     slides[i] = object;
     i++;
@@ -33,10 +33,10 @@ function setSlideMode() {
 
 function setSlideText() {
 
-  var title = slides[currentSlide].title;
-  var artist = slides[currentSlide].artist;
-  var year = slides[currentSlide].year;
-  var downloadLink = slides[currentSlide].downloadLink;
+  let title = slides[currentSlide].title;
+  let artist = slides[currentSlide].artist;
+  let year = slides[currentSlide].year;
+  let downloadLink = slides[currentSlide].downloadLink;
 
   $("#art-title").text(title);
   $("#art-artist").text(artist);
@@ -111,7 +111,7 @@ window.onload = function() {
     // Callback function for when a color slide has been shown
     // Wait until the background image is loaded in cache
 
-    var background = document.createElement("img");
+    const background = document.createElement("img");
     background.onload = function() {
       $("#carousel-image").carousel(currentSlide+1); // Next Slide
     };

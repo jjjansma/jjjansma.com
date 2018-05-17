@@ -1,22 +1,29 @@
 <!-- blend -->
 <div id="carousel-color" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <!-- <div class="carousel-item initial active"></div> -->
   </div>
 </div>
 
 <div id="carousel-image" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <!-- <div class="carousel-item initial active"></div> -->
   </div>
 </div>
+
 <div id="blend-header" class="row justify-content-between mt-4">
-  <div class="col-2 d-flex justify-content-start">
-    <button type="button" class="close" aria-label="Close" data-toggle="tooltip"  data-placement="right" title="Close Ukiyo-e Background" hidden>
-      <span class="display-4" aria-hidden="true">&times;</span>
-    </button>
+
+  <div class="col-4 btn-group btn-group-toggle blend-toolbar" data-toggle="buttons" hidden>
+    <label id="manual-blend" class="btn btn-light active">
+      <input type="radio" name="options" autocomplete="off" checked>Manual
+    </label>
+    <label id="auto-blend" class="btn btn-light">
+      <input type="radio" name="options" autocomplete="off">Auto
+    </label>
+    <label id="close-blend" class="btn btn-light close">
+      <span aria-hidden="true">&times;</span>
+    </label>
   </div>
-  <div class="col-4"
+
+  <div class="col-4">
     <figure class="figure">
       <a id="art-download" href="" target="_blank">
         <figcaption id="art-title" class="figure-caption"></figcaption>

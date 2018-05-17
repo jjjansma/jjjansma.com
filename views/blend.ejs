@@ -9,17 +9,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="blend/blend.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/blend/blend.css">
 
     <title><%= title %></title>
   </head>
 <html lang="en">
   <body>
-    <!-- <div class="preload">
-      <img src="images/1200px-Tsunami_by_hokusai_19th_century.jpg" />
-      <img src="images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg" />
-    </div> -->
     <div class="container">
       <!-- blend -->
       <% include includes/blend %>
@@ -28,30 +24,33 @@
       <div class="row mt-4">
 
         <div class="col-3 nav flex-column nav-pills pt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
-          <a class="nav-link" id="v-pills-projects-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Projects</a>
-          <a class="nav-link" id="v-pills-resume-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Resume</a>
-          <a class="nav-link" id="v-pills-blend-tab" data-toggle="" href="/blend" role="tab" aria-controls="v-pills-messages" aria-selected="false">Blend</a>
-          <!-- <a class="nav-link" id="blend" data-toggle="" href="#" role="tab" aria-controls="v-pills-ukiyo" aria-selected="false">Blend</a> -->
+          <a class="nav-link active" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab" aria-controls="v-pills-home" aria-selected="true">About Blend</a>
+          <a class="nav-link" id="v-pills-features-tab" data-toggle="pill" href="#v-pills-features" role="tab" aria-controls="v-pills-profile" aria-selected="false">Features</a>
+          <a class="nav-link" id="v-pills-install-tab" data-toggle="pill" href="#v-pills-install" role="tab" aria-controls="v-pills-messages" aria-selected="false">Install</a>
+          <a class="nav-link" id="v-pills-ukiyo-tab" data-toggle="pill" href="#v-pills-ukiyo" role="tab" aria-controls="v-pills-messages" aria-selected="false">Ukiyo-e</a>
+          <a class="nav-link" id="v-pills-home-tab" data-toggle="" href="/" role="tab" aria-controls="v-pills-home" aria-selected="false">Home</a>
+          <button id="blend" type="button" class=" btn btn-light mt-2">Blend!</button>
         </div>
 
         <div class="col-9 tab-content pl-4" id="v-pills-tabContent">
-          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <h1 class="">Profile</h1>
+          <div class="tab-pane fade show active" id="v-pills-about" role="tabpanel" aria-labelledby="v-pills-about-tab">
+            <h1 class="">About Blend</h1>
             <div class="my-4">
-              <% include includes/profile %>
             </div>
           </div>
-          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <h1 class="">Projects</h1>
+          <div class="tab-pane fade" id="v-pills-features" role="tabpanel" aria-labelledby="v-pills-features-tab">
+            <h1 class="">Features</h1>
             <div class="my-4">
-              <% include includes/projects %>
             </div>
           </div>
-          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-            <h1 class="">Resume</h1>
+          <div class="tab-pane fade" id="v-pills-install" role="tabpanel" aria-labelledby="v-pills-install-tab">
+            <h1 class="">Install</h1>
             <div class="my-4">
-              <% include includes/resume %>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-ukiyo" role="tabpanel" aria-labelledby="v-pills-ukiyo-tab">
+            <h1 class="">Ukiyo</h1>
+            <div class="my-4">
             </div>
           </div>
         </div>
@@ -66,6 +65,6 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="blend/blend.js"></script>
+    <script src="/blend/blend.js"></script>
   </body>
 </html>

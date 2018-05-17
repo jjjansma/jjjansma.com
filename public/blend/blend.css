@@ -3,10 +3,6 @@ body, a {
   transition: color 0.5s ease;
 }
 
-#blend-header {
-  height: 60px;
-}
-
 .overlay {
   position: fixed;
   width: 100%;
@@ -16,11 +12,19 @@ body, a {
   background-blend-mode: darken;
 }
 
-.figure-caption {
-  color: AliceBlue;
-  opacity: 0.7;
+#blend {
+  max-width: 80px;
 }
 
-.close {
+#blend-header {
+  height: 60px;
+}
+
+.figure-caption, .blend-toolbar {
   color: AliceBlue;
+  opacity: 0.9;
+}
+
+.blend-toolbar {
+  max-height: 38px;
 }

@@ -21,16 +21,14 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/try', function(req, res){
-  res.render("try", {
-    title: "jjjansma"
+app.get('/blend', function(req, res){
+  res.render("blend", {
+    title: "blend"
   });
 });
 
 app.use(function(req, res, next) { // i catch 404s
   console.log("404");
-  //res.status(404).send('Something broke 404!');
-  //res.render('not_found');
   res.status(404).render("404", {
     title: "404 Not Found"
   });

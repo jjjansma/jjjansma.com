@@ -9,7 +9,7 @@
     "downloadLink": "images/Great_Wave_off_Kanagawa2.jpg",
     "rgba": "rgba(49, 140, 231, 1)",
     "rgbaName": "Bleu De France",
-    "a": "images/1200px-Tsunami_by_hokusai_19th_century.jpg"
+    "opacity": "0.9"
   },
   "otani": {
     "title": "Ōtani Oniji III in the Role of the Servant Edobei",
@@ -20,7 +20,8 @@
     "backgroundPosition": "center",
     "downloadLink": "images/Toshusai_Sharaku-_Otani_Oniji,_1794.jpg",
     "rgba": "rgba(0, 66, 37, 0.7)",
-    "rgbaName": "British Racing Green"
+    "rgbaName": "British Racing Green",
+    "opacity": "0.7"
   },
   "crows": {
     "title": "Crows and the Moon",
@@ -31,7 +32,8 @@
     "backgroundPosition": "center",
     "downloadLink": "images/Ogata_Crows_and_the_Moon.jpg",
     "rgba": "rgba(93, 57, 84, 0.7)",
-    "rgbaName": "Dark Byzantium"
+    "rgbaName": "Dark Byzantium",
+    "opacity": "0.8"
   },
   "couple": {
     "title": "Couple in a Snowstorm",
@@ -42,6 +44,7 @@
     "backgroundPosition": "center",
     "downloadLink": "images/Couple_in_a_Snowstorm,_Suzuki_Harunobu,_c._1768_-_Hood_Museum_of_Art_-_DSC09257.JPG",
     "rgba": "rgba(112, 66, 20, 0.5)",
-    "rgbaName": "Sepia"
+    "rgbaName": "Sepia",
+    "opacity": "0.9"
   }
 }

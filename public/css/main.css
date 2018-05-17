@@ -20,16 +20,6 @@ a, a:hover, li>a {
   border: none;
 }
 
-#blend-header {
-  height: 60px;
-}
 .resume-link {
   text-decoration: underline;
-}
-.figure-caption {
-  color: initial;
-  font-weight: bold;
-}
-.close {
-  color: AliceBlue;
 }

@@ -1,42 +1,59 @@
 const slidesJson = "blend/slides.json";
 let slides = [];
-let currentSlide = 0;
-let imageSlideObject;
-let colorSlideObject;
+let activeSlide = 0; // Slide that has the active class
+let toSlide = 0; // Slide that is being transitioned to
 
-const carouselItemElement = '<div class="carousel-item overlay" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0;"></div>';
+const carouselItemElement = '<div class="carousel-item"></div>';
 
 $.getJSON(slidesJson, function(jsonData) {
   let i = 0;
   $.each(jsonData, function (key, object) {
     slides[i] = object;
+
+    $("#carousel-color .carousel-inner").prepend(carouselItemElement).children().first()
+    .css("background-color", slides[i].rgba);
+
+    $("#carousel-image .carousel-inner").append(carouselItemElement).children().last()
+    .css("background-size", slides[i].backgroundSize)
+    .css("background-position", slides[i].backgroundPosition)
+    .css("background-image", "url(" + slides[i].urlLink + ")")
+    .css("opacity", slides[i].opacity)
+    // Trick webkit etc. to preload carousel images
+    .addClass("active");
+
     i++;
   });
+  // Set active slide and init active color slide
+  activeSlide = slides.length - 1;
+  $("#carousel-color .carousel-item").first().addClass("active");
 });
 
-function customizeBlendStyles() {
+function isEndCycle() {
+  // Returns true if the activeSlide is the last slide
 
-  $("body").css("background-blend-mode", "darken")
-  .css("background-attachment", "fixed");
-
-  $("body, a").css("-webkit-transition", "color 0.5s ease").css("transition", "color 0.5s ease");
-
+  if (activeSlide == slides.length - 1) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-function setSlideMode() {
+function setBlendMode() {
   // Customize when user clicks blend button
+
   $(".close").prop("hidden", false);
   $(".link").css({"color": "AliceBlue"});
   $("a.nav-link").css({"color": "AliceBlue"});
   $("body").css({"color": "AliceBlue"}).css({"opacity": "0.9"});
 }
 
-function setSlideText() {
+function showSlideText() {
+  // Show slide text after the image is blended
 
-  let title = slides[currentSlide].title;
-  let artist = slides[currentSlide].artist;
-  let year = slides[currentSlide].year;
-  let downloadLink = slides[currentSlide].downloadLink;
+  let title = slides[toSlide].title;
+  let artist = slides[toSlide].artist;
+  let year = slides[toSlide].year;
+  let downloadLink = slides[toSlide].downloadLink;
 
   $("#art-title").text(title);
   $("#art-artist").text(artist);
@@ -44,106 +61,102 @@ function setSlideText() {
   $("#art-download").attr('href', downloadLink);
 }
 
-function resetSlides() {
-  // Carousel cycle has been completed or user clicks close button
-  $(".overlay").remove();
-  $("#carousel-color .initial").addClass("active");
-  $("#carousel-image .initial").addClass("active");
-  currentSlide = 0;
-}
-
 function clearSlideText() {
-  // $("#blend-header").fadeOut("slow");
+  // Remove the slide text
+
   $("#art-title").text("");
   $("#art-artist").text("");
   $("#art-year").text("");
+  $("#art-download").attr('href', "");
 }
 
 function closeSlides() {
-  // Customize when user clicks close button
+  // Customize when user clicks close slide button
+
   $(".close").prop("hidden", true);
-  $("body").css({"color": "initial"})
-  .css("background-image", "none")
-  .css("background-color", "rgba(93, 138, 168, 1)");
+  $("body").css({"color": "initial"});
   $("a.nav-link").css("color", "initial");
   $(".link").css("color", "initial");
+  $(".overlay").removeClass("overlay");
   clearSlideText();
 }
 
-function startSlide() {
+function blend() {
 
   $("#blend").off("click"); // Remove click event until slide is finished
 
-  clearSlideText();
-  setSlideMode();
+  clearSlideText(); // Clear current slide text
 
-  if (currentSlide == slides.length) {
-    resetSlides();
+  if ($(".close").is("[hidden]")) {
+    // Show blend customizations if not already shown
+
+    setBlendMode();
   }
 
-  if (currentSlide < slides.length) {
-    colorSlideObject = $("#carousel-color .carousel-inner").prepend(carouselItemElement).children().first();
-    colorSlideObject.css("background-color", slides[currentSlide].rgba);
+  if (isEndCycle()) {
+    // Make the to Slide overlay the page
 
-    imageSlideObject = $("#carousel-image .carousel-inner").append(carouselItemElement).children().last();
-    imageSlideObject.css("background-image", "url(" + slides[currentSlide].urlLink + ")")
-    .css("background-size", slides[currentSlide].backgroundSize)
-    .css("background-position", slides[currentSlide].backgroundPosition);
+    // // First cycle is end of cycle, so let's also init active image slide here
+    $("#carousel-image .carousel-item").removeClass("active").last().addClass("active");
+
+    $("#carousel-color .carousel-item").last().addClass("overlay");
+    $("#carousel-image .carousel-item").first().addClass("overlay");
+
+    // Clear overlay background-color from previous cylce
+    $("#carousel-image .carousel-item").css("background-color", "initial");
+    toSlide = 0;
+
+  } else {
+    $("#carousel-color .active").prev().addClass("overlay");
+    $("#carousel-image .active").next().addClass("overlay");
   }
 
-  // var background = document.createElement("img");
-  // background.src = slides[currentSlide].urlLink;
-  // background.onload = function() {
-  //   $('#carousel-color').carousel("prev");
-  // };
+  // Clear the active image to make way for the color slide
+  $("#carousel-image .active").removeClass("overlay");
 
-  $('#carousel-color').carousel("prev");
+  // Show color slide from left to right
+  $("#carousel-color").carousel("prev");
+}
+
+function autoBlend() {
+  $("#carousel-color").carousel('cycle');
+  blend();
 }
 
 window.onload = function() {
-
-  customizeBlendStyles();
 
   $("#carousel-color").carousel("pause");
   $("#carousel-image").carousel("pause");
 
   $("#carousel-color").on("slid.bs.carousel", function () {
-    // Callback function for when a color slide has been shown
-    // Wait until the background image is loaded in cache
+    // The color slide is finished, now show image slide from right to left
 
-    const background = document.createElement("img");
-    background.onload = function() {
-      $("#carousel-image").carousel(currentSlide+1); // Next Slide
-    };
-    background.src = slides[currentSlide].urlLink;
-
-    // $("#carousel-image").carousel(currentSlide+1); // Next Slide
+    $("#carousel-image").carousel("next"); // Next Slide
   });
 
   $("#carousel-image").on("slid.bs.carousel", function () {
-    // Callback function for when an image slide has been shown
-    $(".overlay").css("background-image", "none").css("background-color", "initial");
-    $("body").css("background-color", slides[currentSlide].rgba)
-    .css("background-size", slides[currentSlide].backgroundSize)
-    .css("background-position", slides[currentSlide].backgroundPosition)
-    .css("background-image", "url(" + slides[currentSlide].urlLink + ")");
+    // Callback for all finished, the image slide is being shown
 
-    setSlideText();
-    ++currentSlide; // Finished showing current slide
-
+    $("#carousel-image .active").css("background-color", slides[toSlide].rgba);
+    showSlideText();
     $("#blend").click(function() { // Add back click event
-      startSlide();
+      blend();
     });
+
+    // Keep track of active and to slides
+    if (isEndCycle()) {
+      activeSlide = 0;
+    } else {
+      activeSlide++;
+    }
+    toSlide++;
   });
 
   $("#blend").click(function() {
-    startSlide();
+    blend();
   });
 
   $(".close").click(function() {
-    resetSlides();
     closeSlides();
-    $("#carousel-color").carousel(0);
-
   });
 };

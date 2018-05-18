@@ -2,7 +2,7 @@ const slidesJson = "/blend/slides.json";
 let slides = [];
 let activeSlide = 0; // Slide that has the active class
 let toSlide = 0; // Slide that is being transitioned to
-let interval = 5000; // Auto blend time interval
+let interval = 6000; // Auto blend time interval
 let autoBlend;
 
 const carouselItemElement = '<div class="carousel-item"></div>';
@@ -51,7 +51,7 @@ function isAutoMode() {
 function setBlendMode() {
   // Customize when user clicks blend button
 
-  $(".blend-toolbar").prop("hidden", false);
+  $("#blend-toolbar").prop("hidden", false);
   $(".link").css({"color": "AliceBlue"});
   $("a.nav-link").css({"color": "AliceBlue"});
   $("body").css({"color": "AliceBlue"}).css({"opacity": "0.9"});
@@ -83,27 +83,23 @@ function clearSlideText() {
 function closeSlides() {
   // Customize when user clicks close slide button
 
+  clearSlideText();
   if (isAutoMode()) {
     window.clearInterval(autoBlend);
   }
 
-  $(".blend-toolbar").prop("hidden", true);
+  $("#blend-toolbar").prop("hidden", true);
+  $("#auto-blend").removeClass("active");
+  $("#manual-blend").addClass("active");
   $("body").css({"color": "initial"});
   $("a.nav-link").css("color", "initial");
   $(".link").css("color", "initial");
   $(".overlay").removeClass("overlay");
-  clearSlideText();
-}
-
-function setManualMode() {
-  window.clearInterval(autoBlend);
-  $("#auto-blend").removeClass("active");
-  $("#manual-blend").addClass("active");
 }
 
 function blend() {
 
-  $("#blend, #manual-blend").off("click"); // Remove click event until slide is finished
+  $("#next-blend").off("click"); // Remove click event until slide is finished
 
   clearSlideText(); // Clear current slide text
 
@@ -132,25 +128,6 @@ function blend() {
   $("#carousel-color").carousel("prev");
 }
 
-function triggerBlend() {
-  // Click Blend button, start next slide and set manual mode if necessary
-
-  if (isAutoMode()) {
-    setManualMode();
-  }
-  blend();
-}
-
-function manualBlend() {
-  // Click Manual button, set manual mode or start next slide
-
-  if (isAutoMode()) {
-    setManualMode();
-  } else {
-    blend();
-  }
-}
-
 window.onload = function() {
 
   $("#carousel-color").carousel("pause");
@@ -169,17 +146,13 @@ window.onload = function() {
 
     showSlideText();
 
-    if ($(".blend-toolbar").is("[hidden]")) {
+    if ($("#blend-toolbar").is("[hidden]")) {
       // Show blend customizations if not already shown
       setBlendMode();
     }
 
-    $("#blend").on("click", function() { // Add back cycle
-      triggerBlend();
-    });
-
-    $("#manual-blend").on("click", function() {
-      manualBlend();
+    $("#next-blend").on("click", function() { // Add back cycle
+      blend();
     });
 
     // Keep track of active and to slides
@@ -191,21 +164,29 @@ window.onload = function() {
     toSlide++;
   });
 
+  $("#start-blend").on("click", function() {
+    $("#start-blend").prop("hidden", true);
+    blend();
+  });
+
+  $("#manual-blend").on("click", function() {
+    window.clearInterval(autoBlend);
+  });
+
   $("#auto-blend").on("click", function() {
     if (!isAutoMode()) {
       autoBlend = window.setInterval(blend, interval);
     }
   });
 
-  $("#blend").on("click", function() {
-    triggerBlend();
+  $("#next-blend").on("click", function() {
+    blend();
   });
 
-  $("#manual-blend").on("click", function() {
-    manualBlend();
-  });
-
-  $("#close-blend").on("click", function() {
+  $("#stop-blend").on("click", function() {
+    $("#start-blend").prop("hidden", false);
     closeSlides();
   });
 };
+
+//

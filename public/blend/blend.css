@@ -12,19 +12,19 @@ body, a {
   background-blend-mode: darken;
 }
 
-#blend {
-  max-width: 80px;
-}
-
 #blend-header {
   height: 60px;
 }
 
-.figure-caption, .blend-toolbar {
+.figure-caption {
   color: AliceBlue;
   opacity: 0.9;
 }
 
-.blend-toolbar {
+#blend-toolbar, #start-blend {
   max-height: 38px;
+}
+
+#start-blend, #next-blend {
+  cursor: pointer;
 }

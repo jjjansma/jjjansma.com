@@ -1,39 +1,34 @@
 const slidesJson = "/blend/slides.json";
-let slides = [];
-let activeSlide = 0; // Slide that has the active class
-let toSlide = 0; // Slide that is being transitioned to
-let interval = 6000; // Auto blend time interval
-let autoBlend;
+let slidesArray = [];
 
 const carouselItemElement = '<div class="carousel-item"></div>';
 
 $.getJSON(slidesJson, function(jsonData) {
   let i = 0;
   $.each(jsonData, function (key, object) {
-    slides[i] = object;
+    slidesArray[i] = object;
 
     $("#carousel-color .carousel-inner").prepend(carouselItemElement).children().first()
-    .css("background-color", slides[i].rgba);
+    .css("background-color", slidesArray[i].rgba);
 
     $("#carousel-image .carousel-inner").append(carouselItemElement).children().last()
-    .css("background-size", slides[i].backgroundSize)
-    .css("background-position", slides[i].backgroundPosition)
-    .css("background-image", "url(" + slides[i].urlLink + ")")
-    .css("opacity", slides[i].opacity)
+    .css("background-size", slidesArray[i].backgroundSize)
+    .css("background-position", slidesArray[i].backgroundPosition)
+    .css("background-image", "url(" + slidesArray[i].urlLink + ")")
+    .css("opacity", slidesArray[i].opacity)
     // Trick webkit etc. to preload carousel images
     .addClass("active");
 
     i++;
   });
   // Set active slide and init active color slide
-  activeSlide = slides.length - 1;
   $("#carousel-color .carousel-item").first().addClass("active");
 });
 
-function isEndCycle() {
+function isEndCycle(slides) {
   // Returns true if the activeSlide is the last slide
 
-  if (activeSlide == slides.length - 1) {
+  if (slides.activeSlide == slides.length - 1) {
     return true;
   } else {
     return false;
@@ -48,6 +43,14 @@ function isAutoMode() {
   }
 }
 
+function clearAllIntervals(slides) {
+  // Make sure there are no interval timers
+  $.each(slides.automodes, function (index, automode) {
+    window.clearInterval(automode);
+  });
+  slides.automodes = [];
+}
+
 function setBlendMode() {
   // Customize when user clicks blend button
 
@@ -57,13 +60,13 @@ function setBlendMode() {
   $("body").css({"color": "AliceBlue"}).css({"opacity": "0.9"});
 }
 
-function showSlideText() {
+function showSlideText(toSlide) {
   // Show slide text after the image is blended
 
-  let title = slides[toSlide].title;
-  let artist = slides[toSlide].artist;
-  let year = slides[toSlide].year;
-  let downloadLink = slides[toSlide].downloadLink;
+  let title = slidesArray[toSlide].title;
+  let artist = slidesArray[toSlide].artist;
+  let year = slidesArray[toSlide].year;
+  let downloadLink = slidesArray[toSlide].downloadLink;
 
   $("#art-title").text(title);
   $("#art-artist").text(artist);
@@ -80,30 +83,32 @@ function clearSlideText() {
   $("#art-download").attr('href', "");
 }
 
-function closeSlides() {
+function closeSlides(slides) {
   // Customize when user clicks close slide button
 
   clearSlideText();
   if (isAutoMode()) {
-    window.clearInterval(autoBlend);
+    clearAllIntervals(slides);
   }
 
   $("#blend-toolbar").prop("hidden", true);
-  $("#auto-blend").removeClass("active");
-  $("#manual-blend").addClass("active");
   $("body").css({"color": "initial"});
   $("a.nav-link").css("color", "initial");
   $(".link").css("color", "initial");
   $(".overlay").removeClass("overlay");
 }
 
-function blend() {
+function blend(slides) {
 
   $("#next-blend").off("click"); // Remove click event until slide is finished
 
+  if (isAutoMode()) {
+    clearAllIntervals(slides);
+  }
+
   clearSlideText(); // Clear current slide text
 
-  if (isEndCycle()) {
+  if (isEndCycle(slides)) {
     // Make the to Slide overlay the page
 
     // // First cycle is end of cycle, so let's also init active image slide here
@@ -114,7 +119,7 @@ function blend() {
 
     // Clear overlay background-color from previous cylce
     $("#carousel-image .carousel-item").css("background-color", "initial");
-    toSlide = 0;
+    slides.toSlide = 0;
 
   } else {
     $("#carousel-color .active").prev().addClass("overlay");
@@ -130,6 +135,14 @@ function blend() {
 
 window.onload = function() {
 
+  let slides = {
+    "automodes": [],
+    "interval": "10000", // Automode time interval
+    "activeSlide": slidesArray.length - 1,
+    "toSlide": 0,
+    "length": slidesArray.length
+  };
+
   $("#carousel-color").carousel("pause");
   $("#carousel-image").carousel("pause");
 
@@ -142,51 +155,55 @@ window.onload = function() {
   $("#carousel-image").on("slid.bs.carousel", function () {
     // Callback for all finished, the image slide is being shown
 
-    $("#carousel-image .active").css("background-color", slides[toSlide].rgba);
+    $("#carousel-image .active").css("background-color", slidesArray[slides.toSlide].rgba);
 
-    showSlideText();
+    showSlideText(slides.toSlide);
 
     if ($("#blend-toolbar").is("[hidden]")) {
       // Show blend customizations if not already shown
       setBlendMode();
     }
 
-    $("#next-blend").on("click", function() { // Add back cycle
-      blend();
+    $("#next-blend").on("click", function() { // Add back clickable next button
+      blend(slides);
     });
 
-    // Keep track of active and to slides
-    if (isEndCycle()) {
-      activeSlide = 0;
-    } else {
-      activeSlide++;
+    if (isAutoMode()) {
+      let setIntervalId = window.setInterval(blend, slides.interval, slides);
+      slides.automodes.push(setIntervalId);
     }
-    toSlide++;
+
+    // Keep track of active and to slides
+    if (isEndCycle(slides)) {
+      slides.activeSlide = 0;
+    } else {
+      slides.activeSlide++;
+    }
+    slides.toSlide++;
   });
 
   $("#start-blend").on("click", function() {
     $("#start-blend").prop("hidden", true);
-    blend();
+    blend(slides);
   });
 
   $("#manual-blend").on("click", function() {
-    window.clearInterval(autoBlend);
+    clearAllIntervals(slides);
   });
 
   $("#auto-blend").on("click", function() {
     if (!isAutoMode()) {
-      autoBlend = window.setInterval(blend, interval);
+      let setIntervalId = window.setInterval(blend, slides.interval, slides);
+      slides.automodes.push(setIntervalId);
     }
   });
 
   $("#next-blend").on("click", function() {
-    blend();
+    blend(slides);
   });
 
   $("#stop-blend").on("click", function() {
     $("#start-blend").prop("hidden", false);
-    closeSlides();
+    closeSlides(slides);
   });
 };
-
-//

@@ -14,14 +14,10 @@
 
   <!-- <button id="start-blend" type="button" class="btn btn-light">Start Blend</button> -->
 
-  <div id="blend-toolbar" class="col-4 btn-group btn-group-toggle" data-toggle="buttons" hidden>
-    <label id="manual-blend" class="btn btn-light active">
-      <input type="radio" name="options" autocomplete="off" checked>Manual
-    </label>
-    <label id="auto-blend" class="btn btn-light">
-      <input type="radio" name="options" autocomplete="off">Auto
-    </label>
-    <button id="next-blend" type="button" class="btn-light">Next</button>
+  <div id="blend-toolbar" class="col-4 btn-group btn-group-toggle" role="group" aria-label="blend-toolbar" hidden>
+    <button id="auto-blend" type="button" data-toggle="button" class="btn btn-light active">Auto</button>
+    <button id="manual-blend" type="button" data-toggle="button" class="btn btn-light">Manual</button>
+    <button id="next-blend" type="button" class="btn btn-light">Next</button>
     <label id="stop-blend" class="btn btn-light close">
       <span aria-hidden="true">&times;</span>
     </label>

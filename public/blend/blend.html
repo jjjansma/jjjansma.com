@@ -1,4 +1,5 @@
 <!-- blend -->
+
 <div id="carousel-color" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
   </div>
@@ -10,12 +11,19 @@
 </div>
 
 <div id="blend-header" class="row justify-content-between mt-4">
-  <div class="col-2 d-flex justify-content-start">
-    <button type="button" class="close" aria-label="Close" data-toggle="tooltip"  data-placement="right" title="Close Ukiyo-e Background" hidden>
-      <span class="display-4" aria-hidden="true">&times;</span>
-    </button>
+
+  <!-- <button id="start-blend" type="button" class="btn btn-light">Start Blend</button> -->
+
+  <div id="blend-toolbar" class="col-4 btn-group btn-group-toggle" role="group" aria-label="blend-toolbar" hidden>
+    <button id="auto-blend" type="button" data-toggle="button" class="btn btn-light active">Auto</button>
+    <button id="manual-blend" type="button" data-toggle="button" class="btn btn-light">Manual</button>
+    <button id="next-blend" type="button" class="btn btn-light">Next</button>
+    <label id="stop-blend" class="btn btn-light close">
+      <span aria-hidden="true">&times;</span>
+    </label>
   </div>
-  <div class="col-4"
+
+  <div class="col-4">
     <figure class="figure">
       <a id="art-download" href="" target="_blank">
         <figcaption id="art-title" class="figure-caption"></figcaption>
@@ -25,4 +33,5 @@
     </figure>
   </div>
 </div>
+
 <!-- END blend -->
